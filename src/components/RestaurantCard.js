@@ -21,7 +21,7 @@ const RestaurantCard = ({ Restaurant }) => {
           height={250}
           resizeMode="contain"
         />
-        <Text>Title: {Restaurant.name}</Text>
+        {/* <Text> {Restaurant.name}</Text> */}
       </View>
     </TouchableOpacity>
   );

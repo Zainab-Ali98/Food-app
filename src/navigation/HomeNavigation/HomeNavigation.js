@@ -9,7 +9,13 @@ const Stack = createNativeStackNavigator();
 
 const HomeNavigation = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShadowVisible: false,
+        headerShown: false,
+        tabBarStyle: { backgroundColor: "#e6f7ff" },
+      }}
+    >
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Menu" component={Menu} />
       <Stack.Screen name="DishDetails" component={DishDetails} />

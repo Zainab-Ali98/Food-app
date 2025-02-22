@@ -1,6 +1,6 @@
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
-import Home from "./src/screens/Home";
-import Menu from "./src/screens/Menu";
+// import Home from "./src/screens/Home";
+// import Menu from "./src/screens/Menu";
 import DishDetails from "./src/screens/DishDetails";
 import MyCart from "./src/screens/MyCart";
 import Login from "./src/screens/Login";
@@ -13,23 +13,17 @@ import MainNavigation from "./src/navigation/MainNavigation/MainNavigation";
 export default function App() {
   return (
     <View style={styles.container}>
-      <SafeAreaView
-        style={{
-          flex: 1,
-        }}
-      >
-        <NavigationContainer>
-          {/* <Home /> */}
-          {/* <Menu /> */}
-          {/* <DishDetails /> */}
-          {/* <MyCart /> */}
-          {/* <Login /> */}
-          {/* <Register /> */}
-          {/* {<HomeNavigation />} */}
-          {/* <AuthNavigation /> */}
-          <MainNavigation />
-        </NavigationContainer>
-      </SafeAreaView>
+      <NavigationContainer>
+        {/* <Home /> */}
+        {/* <Menu /> */}
+        {/* <DishDetails /> */}
+        {/* <MyCart /> */}
+        {/* <Login /> */}
+        {/* <Register /> */}
+        {/* {<HomeNavigation />} */}
+        {/* <AuthNavigation /> */}
+        <MainNavigation />
+      </NavigationContainer>
     </View>
   );
 }

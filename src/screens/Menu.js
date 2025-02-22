@@ -6,35 +6,48 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  SafeAreaView,
 } from "react-native";
-import React from "react";
-// import menuItems from "../data/menuItems";
+import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { getAllRestaurantsItem } from "../API/Category";
 
 const Menu = ({ route }) => {
   const { Restaurant } = route.params;
   const navigation = useNavigation();
+  const [menuItems, setMenuItems] = useState([]);
+  console.log("MEOW");
+  useEffect(() => {
+    const fetchMenuItems = async () => {
+      const items = await getAllRestaurantsItem(Restaurant._id);
+      console.log(`Id: ${Restaurant._id} items: ${items}`);
+      setMenuItems(items);
+    };
+    fetchMenuItems();
+  }, []);
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>Menu</Text>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <Text style={styles.title}>Menu</Text>
 
-      {Restaurant.menuItems.map((item) => (
-        <TouchableOpacity
-          key={item.id}
-          style={styles.menuItem}
-          onPress={() => navigation.navigate("DishDetails", { dish: item })}
-        >
-          <Image source={{ uri: item.image }} style={styles.image} />
-          <Text style={styles.itemName}>{item.name}</Text>
-          <Text style={styles.price}>{item.price}Kd</Text>
-          <Button
-            title="Add to Cart"
-            onPress={() => alert(`${item.name} added to cart!`)}
-          />
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
+        {menuItems.map((item) => (
+          <TouchableOpacity
+            key={item._id}
+            style={styles.menuItem}
+            onPress={() => navigation.navigate("DishDetails", { dish: item })}
+          >
+            <Image source={{ uri: item.image }} style={styles.image} />
+            <Text style={styles.itemName}>{item.name}</Text>
+            <Text style={styles.price}>{item.price}Kd</Text>
+            <Button
+              title="Add to Cart"
+              onPress={() => alert(`${item.name} added to cart!`)}
+            />
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -44,7 +57,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#f8f9fa",
+    backgroundColor: "#cce6ff",
   },
   title: {
     fontSize: 24,

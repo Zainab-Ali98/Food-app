@@ -1,22 +1,32 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, Button } from "react-native";
-import restaurants from "../data/restaurants";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  SafeAreaView,
+} from "react-native";
+// import restaurants from "../data/restaurants";
 
 const DishDetails = ({ route }) => {
   const { dish } = route.params;
 
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: dish.image }} style={styles.image} />
-      <Text style={styles.name}>{dish.name}</Text>
-      <Text style={styles.description}>{dish.description}</Text>
-      <Text style={styles.ingredients}>{dish.ingredients}</Text>
-      <Text style={styles.price}>{dish.price}Kd</Text>
-      <Button
-        title="Add to Cart"
-        onPress={() => alert(`${dish.name} added to cart!`)}
-      />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Text style={styles.title}> DishDetails</Text>
+        <Image source={{ uri: dish.image }} style={styles.image} />
+        <Text style={styles.name}>{dish.name}</Text>
+        <Text style={styles.description}>{dish.description}</Text>
+        <Text style={styles.ingredients}>{dish.ingredients}</Text>
+        <Text style={styles.price}>{dish.price}Kd</Text>
+        <Button
+          title="Add to Cart"
+          onPress={() => alert(`${dish.name} added to cart!`)}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -26,7 +36,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#f8f9fa",
+    backgroundColor: "#e6f7ff",
   },
   image: {
     width: "100%",
@@ -56,5 +66,11 @@ const styles = StyleSheet.create({
     color: "#28a745",
     marginBottom: 10,
     textAlign: "center",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginVertical: 16,
   },
 });

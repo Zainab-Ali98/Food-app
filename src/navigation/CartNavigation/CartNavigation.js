@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Login from "../../screens/Login";
-import Register from "../../screens/Register";
+import MyCart from "../../screens/MyCart";
 
 const Stack = createNativeStackNavigator();
-const AuthNavigation = () => {
+
+const CartNavigation = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -14,12 +14,11 @@ const AuthNavigation = () => {
         tabBarStyle: { backgroundColor: "#e6f7ff" },
       }}
     >
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen name="MyCart" component={MyCart} />
     </Stack.Navigator>
   );
 };
 
-export default AuthNavigation;
+export default CartNavigation;
 
 const styles = StyleSheet.create({});
