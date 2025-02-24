@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const MenuCard = ({ manu }) => {
+const MenuCard = ({ menu }) => {
   return (
     <View style={styles.MenuCard}>
       <Image
@@ -12,8 +12,8 @@ const MenuCard = ({ manu }) => {
         height={100}
         resizeMode="contain"
       />
-      <Text>Title: {manu.name}</Text>
-      <Text>Title: {manu.price}</Text>
+      <Text>Title: {menu.name}</Text>
+      <Text>Title: {menu.price}</Text>
     </View>
   );
 };

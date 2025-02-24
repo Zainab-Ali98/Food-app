@@ -6,19 +6,28 @@ import {
   Image,
   SafeAreaView,
 } from "react-native";
-import React, { useEffect, useState } from "react";
-import CategoryCard from "../components/CategoryCard";
+import React, { useState } from "react";
 import RestaurantCard from "../components/RestaurantCard";
 // import restaurantCategories from "../data/restaurantCategories";
 // import restaurants from "../data/restaurants";
-import { getAllCategory } from "../API/Category";
-import { getAllResturants } from "../API/Category";
-// import { getAllResturantsByID } from "../API/Category";
+import { getAllResturants, getAllCategory } from "../API/Category";
+import { useQuery } from "@tanstack/react-query";
+import CategoryCard from "../components/CategoryCard";
 
 const Home = () => {
-  const [categories, setCategories] = useState([]);
+  const { data: categories } = useQuery({
+    queryKey: ["fetchAllCategories"],
+    queryFn: () => getAllCategory(),
+  });
+
+  const { data: restaurants } = useQuery({
+    queryKey: ["fetchAllRestaurants"],
+    queryFn: () => getAllResturants(),
+  });
+
   const [categoryName, setCategoryName] = useState("");
-  const displayategories = categories.map((category) => (
+
+  const displayCategories = categories?.map((category) => (
     <CategoryCard
       key={category._id}
       category={category}
@@ -26,28 +35,12 @@ const Home = () => {
     />
   ));
 
-  useEffect(() => {
-    const fetchCategory = async () => {
-      const res = await getAllCategory();
-      setCategories(res);
-    };
-    fetchCategory();
-  }, []);
-
-  const [restaurants, setRestaurants] = useState([]);
   const displayRest = restaurants
-    .filter((rest) => rest.category.name === categoryName)
+    ?.filter((rest) => rest.category.name === categoryName)
     .map((restaurant) => (
       <RestaurantCard key={restaurant._id} Restaurant={restaurant} />
     ));
 
-  useEffect(() => {
-    const fetchRestaurants = async () => {
-      const res = await getAllResturants();
-      setRestaurants(res);
-    };
-    fetchRestaurants();
-  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.header}>Welcome to Our Foodie App</Text>
@@ -59,7 +52,7 @@ const Home = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
       >
-        {displayategories}
+        {displayCategories}
       </ScrollView>
 
       <Text style={styles.title}>Restaurants</Text>
@@ -72,7 +65,7 @@ const Home = () => {
         }}
         showsVerticalScrollIndicator={false}
       >
-        {displayRest.length === 0 ? (
+        {displayRest && displayRest.length === 0 ? (
           <Text style={styles.body}>Choose a category</Text>
         ) : (
           displayRest
