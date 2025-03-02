@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import cartItemsData from "../data/cartItems";
-// import { useNavigation } from "@react-navigation/native";
+//  import { useNavigation } from "@react-navigation/native";
 
 const MyCart = () => {
   const [cartItems, setCartItems] = useState(cartItemsData);

@@ -6,17 +6,33 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { useMutation } from "@tanstack/react-query";
+import { login } from "../API/auth";
+import UserContext from "../Context/UserContext";
+
+// import ROUTES from "../../navigation";
 
 const Login = () => {
   const navigation = useNavigation();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [userInfo, setUserInfo] = useState({});
+  const { isAuth, setIsAuth } = useContext(UserContext);
+  const { mutate } = useMutation({
+    mutationKey: ["login"],
+    mutationFn: () => login(userInfo),
+    onSuccess: () => {
+      alert("Welcome");
+      setIsAuth(true);
+    },
+    onError: (error) => {
+      alert("Something went wrong");
+      conssole.log(error);
+    },
+  });
 
   const handleLogin = () => {
-    console.log("Username:", username);
-    console.log("Password:", password);
+    mutate();
   };
 
   return (
@@ -26,14 +42,18 @@ const Login = () => {
         <TextInput
           style={styles.input}
           placeholder="Username"
-          value={username}
-          onChangeText={setUsername}
+          value={userInfo.username}
+          onChangeText={(value) =>
+            setUserInfo({ ...userInfo, username: value })
+          }
         />
         <TextInput
           style={styles.input}
           placeholder="Password"
-          value={password}
-          onChangeText={setPassword}
+          value={userInfo.password}
+          onChangeText={(value) =>
+            setUserInfo({ ...userInfo, password: value })
+          }
           secureTextEntry
         />
         <Button title="Login" onPress={handleLogin} />
@@ -41,6 +61,7 @@ const Login = () => {
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("Register");
+            // navigation.navigate(ROUTES.AUTH.REGISTER);
           }}
         >
           <Text style={styles.linkTextBold}>Register</Text>

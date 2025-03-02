@@ -16,7 +16,6 @@ const MainNavigation = () => {
         headerShadowVisible: false,
         headerShown: false,
         tabBarStyle: { backgroundColor: "#e6f7ff" },
-        
       }}
     >
       <Tab.Screen
@@ -46,6 +45,18 @@ const MainNavigation = () => {
           tabBarIcon: ({ color, size }) => (
             <EvilIcons name="cart" size={24} color="black" />
           ),
+          headerRight: () => {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  deleteToken();
+                  setIsAuth(false);
+                }}
+              >
+                <MaterialIcons name="logout" size={20} color="red" />
+              </TouchableOpacity>
+            );
+          },
           tabBarLabel: "MyCart",
         }}
       />
