@@ -16,7 +16,7 @@ const Menu = ({ route }) => {
   const { Restaurant } = route.params;
   const navigation = useNavigation();
   const [menuItems, setMenuItems] = useState([]);
-  console.log("MEOW");
+
   useEffect(() => {
     const fetchMenuItems = async () => {
       const items = await getAllRestaurantsItem(Restaurant._id);

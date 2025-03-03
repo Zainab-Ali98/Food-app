@@ -12,7 +12,7 @@ import MainNavigation from "./src/navigation/MainNavigation/MainNavigation";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import UserContext from "./src/Context/UserContext";
 import { useEffect, useState } from "react";
-import { getToken } from "./src/API/storage";
+import { deleteToken, getToken } from "./src/API/storage";
 
 export default function App() {
   const queryClinet = new QueryClient();
@@ -25,6 +25,7 @@ export default function App() {
     }
   };
   useEffect(() => {
+    // deleteToken();
     checkToken();
   });
   return (
@@ -53,8 +54,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    // alignItems: "center",
-    //justifyContent: "center",
   },
 
   categoryCard: {

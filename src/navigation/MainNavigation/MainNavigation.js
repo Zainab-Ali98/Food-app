@@ -7,6 +7,7 @@ import CartNavigation from "../CartNavigation/CartNavigation";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 const Tab = createBottomTabNavigator();
 const MainNavigation = () => {
@@ -28,7 +29,7 @@ const MainNavigation = () => {
           tabBarLabel: "Home",
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="AuthNav"
         component={AuthNavigation}
         options={{
@@ -37,7 +38,7 @@ const MainNavigation = () => {
           ),
           tabBarLabel: "Account",
         }}
-      />
+      /> */}
       <Tab.Screen
         name="CartNav"
         component={CartNavigation}
