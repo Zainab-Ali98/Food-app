@@ -8,8 +8,6 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import RestaurantCard from "../components/RestaurantCard";
-//  import restaurantCategories from "../data/restaurantCategories";
-//  import restaurants from "../data/restaurants";
 import { getAllResturants, getAllCategory } from "../API/Category";
 import { useQuery } from "@tanstack/react-query";
 import CategoryCard from "../components/CategoryCard";

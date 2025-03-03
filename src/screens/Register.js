@@ -14,7 +14,7 @@ import UserContext from "../Context/UserContext";
 import { useMutation } from "@tanstack/react-query";
 import { register } from "../API/auth";
 
-// ("expo-image-picker");
+
 
 const Register = () => {
   const navigation = useNavigation();

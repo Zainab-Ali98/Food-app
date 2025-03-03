@@ -34,9 +34,5 @@ const login = async (userInfo) => {
   return res.data;
 };
 
-const profile = async () => {
-  const res = await instance.get("/auth/profile");
-  return res.data;
-};
 
-export { login, register, profile };
+export { login, register};

@@ -7,7 +7,7 @@ import {
   Button,
   SafeAreaView,
 } from "react-native";
-// import restaurants from "../data/restaurants";
+
 
 const DishDetails = ({ route }) => {
   const { dish } = route.params;

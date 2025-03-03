@@ -12,7 +12,7 @@ import { useMutation } from "@tanstack/react-query";
 import { login } from "../API/auth";
 import UserContext from "../Context/UserContext";
 
-// import ROUTES from "../../navigation";
+
 
 const Login = () => {
   const navigation = useNavigation();
@@ -61,7 +61,7 @@ const Login = () => {
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("Register");
-            // navigation.navigate(ROUTES.AUTH.REGISTER);
+        
           }}
         >
           <Text style={styles.linkTextBold}>Register</Text>
